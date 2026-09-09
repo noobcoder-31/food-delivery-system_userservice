@@ -29,4 +29,13 @@ public class UserService {
 
         return userProfileRepository.save(profile);
     }
+
+    public UserProfile getProfile(Long userId){
+        UserProfile userProfile =
+                userProfileRepository.findByUserId(userId)
+                        .orElseThrow(() ->
+                                new RuntimeException("User does not exist"));
+
+        return userProfile;
+    }
 }

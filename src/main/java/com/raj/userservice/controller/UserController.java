@@ -35,10 +35,7 @@ public class UserController {
     @GetMapping("/{userId}")
     public ResponseEntity<UserProfile> getProfile(@PathVariable Long userId) {
 
-        UserProfile userProfile =
-                userProfileRepository.findByUserId(userId)
-                        .orElseThrow(() ->
-                                new RuntimeException("User does not exist"));
+        UserProfile userProfile = userService.getProfile(userId);
 
         return ResponseEntity.ok(userProfile);
     }
