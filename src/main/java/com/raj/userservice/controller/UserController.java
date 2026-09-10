@@ -21,19 +21,19 @@ public class UserController {
         this.userProfileRepository = userProfileRepository;
     }
 
-    @PostMapping("/{userId}")
+    @PostMapping("/me")
     @ResponseStatus(HttpStatus.CREATED)
     public UserProfile createProfile(
             @PathVariable Long userId,
             @Valid @RequestBody CreateUserProfileRequest request) {
 
-        return userService.createProfile(userId, request);
+        return userService.createProfile(request);
     }
 
-    @GetMapping("/{userId}")
-    public ResponseEntity<UserProfile> getProfile(@PathVariable Long userId) {
+    @GetMapping("/me")
+    public ResponseEntity<UserProfile> getProfile() {
 
-        UserProfile userProfile = userService.getProfile(userId);
+        UserProfile userProfile = userService.getProfile();
 
         return ResponseEntity.ok(userProfile);
     }
